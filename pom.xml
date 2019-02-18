@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cbt</groupId>
+    <artifactId>simple-cucumber-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>4.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>4.2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+
+                    <includes>
+                        <include>**/*CukesRunner.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>4.4.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>cucumber-jvm-example</projectName>
+                            <!-- output directory for the generated report -->
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <!-- optional, defaults to outputDirectory if not specified -->
+                            <inputDirectory>${project.build.directory}</inputDirectory>
+
+                            <jsonFiles>
+                                <!-- supports wildcard or name pattern -->
+                                <param>**/cucumber.json</param>
+                            </jsonFiles>
+                            <classificationFiles>
+                                <!-- supports wildcard or name pattern -->
+                                <param>sample.properties</param>
+                                <param>other.properties</param>
+                            </classificationFiles>
+                            <!--<parallelTesting>false</parallelTesting>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
