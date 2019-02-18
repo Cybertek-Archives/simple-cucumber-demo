@@ -10,6 +10,8 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static org.junit.Assert.fail;
+
 public class StepDefs {
     WebDriver driver;
 
@@ -29,6 +31,12 @@ public class StepDefs {
     @Then("^I should see the results$")
     public void i_should_see_the_results() throws Throwable {
         Assert.assertTrue(driver.getCurrentUrl().contains("search"));
+    }
+
+    @Then("^I should see more results$")
+    public void i_should_see_more_results() throws Throwable {
+        Assert.assertTrue(driver.getCurrentUrl().contains("search"));
+        fail();
     }
 
     @After
