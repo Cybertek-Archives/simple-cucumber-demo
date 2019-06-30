@@ -10,8 +10,8 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json",
                 "html:target/cucumber/",
                 "junit:target/junit/junit-report.xml",
-                "rerun:target/rerun.txt",
-                 dryRun = true}
+                "rerun:target/rerun.txt" },
+        dryRun = true
 )
 public class CukesRunner {
 
